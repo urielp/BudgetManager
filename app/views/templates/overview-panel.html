@@ -3,8 +3,8 @@
     <div class="panel panel-blue panel-widget uriel">
       <div class="row no-padding">
         <div class="col-sm-9 col-lg-7 widget-right widget-heb">
-          <div class="large">120 </div>
-          <div class="text-muted">New Orders</div>
+          <div class="large">{{monthCounter}} חודשים</div>
+          <div class="text-muted">תקופת חשבון</div>
         </div>
         <div class="col-sm-3 col-lg-5 widget-left">
           <svg class="glyph stroked bag"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-bag"></use></svg>
@@ -16,8 +16,8 @@
     <div class="panel panel-orange panel-widget uriel">
       <div class="row no-padding">
         <div class="col-sm-9 col-lg-7 widget-right widget-heb">
-          <div class="large ng-binding">{{balance}}</div>
-          <div class="text-muted">מאזן כללי <br></div>
+          <div  ng-class="($totalBalance<0) ? 'large' : 'largeNeg'"> &#8362;{{totalBalance}} </div>
+          <div class="text-muted">מאזן כללי </tt><br/></div>
         </div>
         <div class="col-sm-3 col-lg-5 widget-left">
           <svg class="glyph stroked line-graph"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-line-graph"></use></svg>
@@ -29,7 +29,7 @@
     <div class="panel panel-teal panel-widget uriel">
       <div class="row no-padding">
         <div class="col-sm-9 col-lg-7 widget-right ">
-          <div class="large ng-binding">{{incomes}}</div>
+          <div ng-class="($totalCredit>0) ? 'largeNeg' : 'largePos'">  &#8362; {{totalCredit.toPrecision(8)}} </div>
           <div class="text-muted">הכנסות חודשיות</div>
         </div>
         <div class="col-sm-3 col-lg-5 widget-left">
@@ -43,8 +43,8 @@
       <div class="row no-padding">
         <div class="col-sm-9 col-lg-7 widget-right">
           <div class="large">
-            <div class="ng-binding">
-              {{outcomes}}
+            <div  ng-class="($totalBalance<0) ? 'large' : 'largeNeg'">
+              &#8362;  {{totalDebit.toPrecision(8)}}
             </div>
           </div>
           <div class="text-muted">הוצאות חודשיות</div>

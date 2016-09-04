@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html ng-app="barChartApp"  lang="he">
+  <head >
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+
+        </title>
+        <!--Styles and CSS-->
+        <link rel="stylesheet" href="Content/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Content/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="Content/css/styles.css">
+        <link href="Content/css/c3.css" rel="stylesheet" type="text/css">
+      <!--Icons-->
+      <script src="Scripts/lumino.glyphs.js"></script>
+        <!--Scripts-->
+        <script src="Scripts/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="Scripts/bootstrap.min.js"></script>
+        <script src="Scripts/Chart.min.js"></script>
+        <script src="Scripts/angular-chart.min.js"></script>
+        <script src="Scripts/chart-data.js"></script>
+        <script src="Scripts/easypiechart.js"></script>
+        <script src="Scripts/easypiechart-data.js"></script>
+        <script src="Scripts/bootstrap-datepicker.js"></script>
+      <script src="Scripts/d3.min.js" charset="utf-8"></script>
+      <script src="Scripts/c3.min.js"></script>
+        <script src="app/barChart.js"></script>
+  </head>
+
+<body  ng-controller="BarCtrl">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+    <div class="container-fluid" >
+        <div class="navbar-header" >
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>
+            <ul class="user-menu">
+                <li class="dropdown pull-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
+                        <li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
+                        <li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div id="sidebar-collapse" class="col-sm-3 col-lg-5 sidebar collapse in" >
+   <!--This is the search option,shoul dbe disabled at the moment-->
+    <!--
+    <form role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+    </form>-->
+    <ul class="nav menu">
+        <li class="active"><a href="index_old.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+        <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>
+        <li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>
+        <li><a href="tables.html"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
+        <li><a href="forms.html"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Forms</a></li>
+        <li><a href="panels.html"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Alerts &amp; Panels</a></li>
+        <li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
+        <li class="parent ">
+            <a href="#">
+                <span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span> Dropdown
+            </a>
+            <ul class="children collapse" id="sub-item-1">
+                <li>
+                    <a class="" href="#">
+                        <svg class="glyph stroked chevron-left"><use xlink:href="#stroked-chevron-left"></use></svg> Sub Item 1
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="#">
+                        <svg class="glyph stroked chevron-left"><use xlink:href="#stroked-chevron-left"></use></svg> Sub Item 2
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="#">
+                        <svg class="glyph stroked chevron-left"><use xlink:href="#stroked-chevron-left"></use></svg> Sub Item 3
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li role="presentation" class="divider"></li>
+        <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li>
+    </ul>
+
+</div><!--/.sidebar-->
+
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" style="right:250px" >
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+            <li class="active">Icons</li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" >
+            <h1 class="page-header" >ניהול תקציב ביתי </h1></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-blue panel-widget ">
+                <div class="row no-padding">
+                    <div class="col-sm-9 col-lg-7 widget-right widget-heb" >
+                        <div class="large">120 </div>
+                        <div class="text-muted">New Orders</div>
+                    </div>
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3 " >
+            <div class="panel panel-orange panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-9 col-lg-7 widget-right widget-heb" >
+                        <div  ng-class="($totalBalance<0) ? 'large' : 'largeNeg'"> {{totalBalance}}</div>
+                        <div class="text-muted">מאזן כללי </tt><br/></div>
+                    </div>
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-teal panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-9 col-lg-7 widget-right " >
+                        <div class="large">{{incomeCount}}</div>
+                        <div class="text-muted">הכנסות חודשיות</div>
+                    </div>
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                          <svg class="glyph stroked download"><use xlink:href="#stroked-download"></use></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3" >
+            <div class="panel panel-red panel-widget">
+                <div class="row no-padding" >
+                    <div class="col-sm-9 col-lg-7 widget-right" >
+                      <div class="large" >
+                      <div>
+                        {{outComeCount}}
+                      </div>
+                      </div>
+                      <div class="text-muted" >הוצאות חודשיות</div>
+                    </div>
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked upload"><use xlink:href="#stroked-upload"/></svg>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">גרף הוצאות \ הכנסות</div>
+            <div class="panel-body">
+                <div id="chart"></div>
+                <div class="canvas-wrapper">
+                    <!--
+                    <canvas class="chart chart-line" height="100" width="400" chart-data="data" chart-labels="labels" chart-series="series"
+                                        chart-colors="colors" chart-dataset-override="datasets" >
+                      </canvas>-->
+                   <!-- <div id="chart"></div>-->
+                      <div>
+                        <!--  <button ng-click="addData()" >Add Random Data</button>-->
+                          <button ng-click="showGraph()">Show graph</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div><!--/.row-->
+    <div class="row">
+    			<div class="col-xs-6 col-md-3">
+    				<div class="panel panel-default">
+    					<div class="panel-body easypiechart-panel">
+    						<h4>New Orders</h4>
+    						<div class="easypiechart" id="easypiechart-blue" data-percent="92"><span class="percent">92%</span>
+    						<!--<canvas height="110" width="110"></canvas>--></div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				<div class="panel panel-default">
+    					<div class="panel-body easypiechart-panel">
+    						<h4>Comments</h4>
+    						<div class="easypiechart" id="easypiechart-orange" data-percent="65"><span class="percent">65%</span>
+    					<!--	<canvas height="110" width="110"></canvas>--></div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				<div class="panel panel-default">
+    					<div class="panel-body easypiechart-panel">
+    						<h4>New Users</h4>
+    						<div class="easypiechart" id="easypiechart-teal" data-percent="56"><span class="percent">56%</span>
+    					<!--	<canvas height="110" width="110"></canvas>--></div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				<div class="panel panel-default">
+    					<div class="panel-body easypiechart-panel">
+    						<h4>Visitors</h4>
+    						<div class="easypiechart" id="easypiechart-red" data-percent="27"><span class="percent">27%</span>
+    						<!--<canvas height="110" width="110">--></canvas></div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+</div>
+
+</body>
+</html>

@@ -11,8 +11,9 @@ angular.module('budgetManagerApp')
     return {
       templateUrl: 'views/templates/cashflowgarph-panel.html',
       restrict: 'E',
+      controller:'GraohcontrollerCtrl',
       link: function ($scope) {
-        
+
       }
     };
   });
