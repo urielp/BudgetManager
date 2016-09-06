@@ -299,9 +299,9 @@ angular.module('budgetManagerApp')
       }
       if(entry.debit == 0 )
       {
-        $scope.income.push(entry.credit);
+       // $scope.income.push(entry.credit);
         //$scope.incomeDescription.push(entry.description);
-        $scope.income.push({y:entry.credit,d:entry.description});
+        $scope.income.push({y:entry.credit,d:entry.description,date:entry.actionDate});
         $scope.incomeCount++;
         $scope.totalBalance=$scope.totalBalance+parseInt(entry.credit);
         $scope.totalCredit=$scope.totalCredit+entry.credit;
@@ -310,9 +310,9 @@ angular.module('budgetManagerApp')
       }
       else
       {
-        $scope.outcome.push(entry.debit);
+       // $scope.outcome.push(entry.debit);
        // $scope.outComeDescription.push(entry.description);
-       $scope.outcome.push({y:entry.debit,d:entry.description} );
+       $scope.outcome.push({y:entry.debit,d:entry.description,date:entry.actionDate} );
         $scope.outComeCount++;
         $scope.totalBalance=$scope.totalBalance+parseInt(entry.debit);
         $scope.totalDebit=$scope.totalDebit+entry.debit;
@@ -376,7 +376,7 @@ angular.module('budgetManagerApp')
               value: -5500 // Need to set this probably as a var.
             }]
           },
-          
+
           /*
           tooltip: {
             shared:false,
@@ -405,7 +405,7 @@ angular.module('budgetManagerApp')
                 shared: false,
                 valueSuffix:'₪',
                 formatter: function () {
-                    return 'Description : ' + this.point.d +'<br/>'+     'Amount : ' +this.point.y +'₪<br/>';
+                    return 'Description : ' + this.point.d +'<br/>'+     'Amount : ' +this.point.y +'₪<br/>Date:'+this.point.date;
                 }
             }
           ,

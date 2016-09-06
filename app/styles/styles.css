@@ -450,7 +450,7 @@ a.bg-danger:hover {
 }
 
 .widget-right {
-  text-align: right;//sets the direction of the text to be on the right
+  text-align: right;/*sets the direction of the text to be on the right*/
 line-height: 1.6em;
   margin: 0px;
   padding: 20px;

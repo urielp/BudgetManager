@@ -11,7 +11,7 @@ angular.module('budgetManagerApp')
     return {
       templateUrl: 'views/templates/overview-panel.html',
       restrict: 'E',
-      controller:'testCtrl',
+      controller:'OverviewControllerCtrl',
       link: function($scope) {
 
         $scope.getExpenses = ExpensesListService.getExpenses();
@@ -19,7 +19,7 @@ angular.module('budgetManagerApp')
         $scope.getMessage =function()
         {
           console.log("Hello World");
-        }
+        };
 
       }
     };
