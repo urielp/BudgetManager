@@ -300,7 +300,8 @@ angular.module('budgetManagerApp')
       if(entry.debit == 0 )
       {
         $scope.income.push(entry.credit);
-        $scope.incomeDescription.push(entry.description);
+        //$scope.incomeDescription.push(entry.description);
+        $scope.income.push({y:entry.credit,d:entry.description});
         $scope.incomeCount++;
         $scope.totalBalance=$scope.totalBalance+parseInt(entry.credit);
         $scope.totalCredit=$scope.totalCredit+entry.credit;
@@ -310,7 +311,8 @@ angular.module('budgetManagerApp')
       else
       {
         $scope.outcome.push(entry.debit);
-        $scope.outComeDescription.push(entry.description);
+       // $scope.outComeDescription.push(entry.description);
+       $scope.outcome.push({y:entry.debit,d:entry.description} );
         $scope.outComeCount++;
         $scope.totalBalance=$scope.totalBalance+parseInt(entry.debit);
         $scope.totalDebit=$scope.totalDebit+entry.debit;
@@ -374,6 +376,7 @@ angular.module('budgetManagerApp')
               value: -5500 // Need to set this probably as a var.
             }]
           },
+          
           /*
           tooltip: {
             shared:false,
@@ -381,6 +384,7 @@ angular.module('budgetManagerApp')
             crosshairs: true
           }*/
           /****Test To Be Checked ***/
+          /*
            tooltip: {
                 shared: false,
                 valueSuffix:'₪',
@@ -396,8 +400,16 @@ angular.module('budgetManagerApp')
                     }
                     return text+ '₪';
                 }
+            }*/
+            tooltip: {
+                shared: false,
+                valueSuffix:'₪',
+                formatter: function () {
+                    return 'Description : ' + this.point.d +'<br/>'+     'Amount : ' +this.point.y +'₪<br/>';
+                }
             }
           ,
+          /*
           plotOptions: {
             area: {
 
@@ -413,7 +425,18 @@ angular.module('budgetManagerApp')
                 }
               }
             }
-          },
+          }*/
+             plotOptions: {
+                area: {
+                    //stacking: 'normal',
+                    lineColor: '#666666',
+                    lineWidth: 1,
+                    marker: {
+                        lineWidth: 1,
+                        lineColor: '#666666'
+                    }
+                }
+            },
           series: [{
             name: 'Outcome',
             data: $scope.outcome,
