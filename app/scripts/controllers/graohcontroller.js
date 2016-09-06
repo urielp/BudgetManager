@@ -17,6 +17,8 @@ angular.module('budgetManagerApp')
     $scope.totalCredit=0;
     $scope.monthCounter=0;
     $scope.oldDate =new Date() ;
+    $scope.incomeDescription = [];
+    $scope.outComeDescription =[];
     //raw real data
     //TODO:take this data from the DB
     $scope.movments =
@@ -298,6 +300,7 @@ angular.module('budgetManagerApp')
       if(entry.debit == 0 )
       {
         $scope.income.push(entry.credit);
+        $scope.incomeDescription.push(entry.description);
         $scope.incomeCount++;
         $scope.totalBalance=$scope.totalBalance+parseInt(entry.credit);
         $scope.totalCredit=$scope.totalCredit+entry.credit;
@@ -307,6 +310,7 @@ angular.module('budgetManagerApp')
       else
       {
         $scope.outcome.push(entry.debit);
+        $scope.outComeDescription.push(entry.description);
         $scope.outComeCount++;
         $scope.totalBalance=$scope.totalBalance+parseInt(entry.debit);
         $scope.totalDebit=$scope.totalDebit+entry.debit;
@@ -370,11 +374,30 @@ angular.module('budgetManagerApp')
               value: -5500 // Need to set this probably as a var.
             }]
           },
+          /*
           tooltip: {
-            shared: true,
+            shared:false,
             valueSuffix: '₪',
             crosshairs: true
-          },
+          }*/
+          /****Test To Be Checked ***/
+           tooltip: {
+                shared: false,
+                valueSuffix:'₪',
+                formatter: function () {
+                    var text = '';
+                    var serieI = this.series.index;
+                    var index = $scope.dates.indexOf(this.x);
+                    if (this.series.name == 'Income') {
+
+                        text =  $scope.incomeDescription[index] + ':' + this.y ;
+                    } else {
+                        text = $scope.outComeDescription[index] + ':' + this.y ;
+                    }
+                    return text+ '₪';
+                }
+            }
+          ,
           plotOptions: {
             area: {
 
