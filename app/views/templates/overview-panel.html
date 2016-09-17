@@ -3,7 +3,7 @@
     <div class="panel panel-blue panel-widget uriel">
       <div class="row no-padding">
         <div class="col-sm-9 col-lg-7 widget-right widget-heb">
-          <div class="large">{{monthCounter}} חודשים</div>
+          <div class="large">{{period}} חודשים</div>
           <div class="text-muted">תקופת חשבון</div>
         </div>
         <div class="col-sm-3 col-lg-5 widget-left">
@@ -16,7 +16,7 @@
     <div class="panel panel-orange panel-widget uriel">
       <div class="row no-padding">
         <div class="col-sm-9 col-lg-7 widget-right widget-heb">
-          <div  ng-class="{largePos: totalBalance>0, largeNeg: totalBalance<0}"> &#8362;{{totalBalance}} </div>
+          <div  ng-class="{largePos: totalBalance>0, largeNeg: balance<0}"> &#8362;{{balance.toPrecision(5)}} </div>
           <div class="text-muted">מאזן כללי </tt><br/></div>
         </div>
         <div class="col-sm-3 col-lg-5 widget-left">
@@ -29,7 +29,7 @@
     <div class="panel panel-teal panel-widget uriel">
       <div class="row no-padding">
         <div class="col-sm-9 col-lg-7 widget-right ">
-          <div ng-class="{largePos: totalCredit>0, largeNeg: totalCredit<0}">  &#8362; {{totalCredit.toPrecision(8)}} </div>
+          <div ng-class="{largePos: incomes>0, largeNeg: incomes<0}">  &#8362; {{incomes.toPrecision(8)}} </div>
           <div class="text-muted">הכנסות חודשיות</div>
         </div>
         <div class="col-sm-3 col-lg-5 widget-left">
@@ -39,12 +39,12 @@
     </div>
   </div>
   <div class="col-xs-12 col-md-6 col-lg-3">
-    <div class="panel panel-red panel-widget uriel" ng-click='getMessage()' ng-mouseover="class='box2'">
+    <div class="panel panel-red panel-widget uriel" ng-click="showModal()" ng-mouseover="class='box2'">
       <div class="row no-padding">
         <div class="col-sm-9 col-lg-7 widget-right">
           <div class="large">
-            <div  ng-class="{largePos: totalDebit>0, largeNeg: totalDebit<0}">
-              &#8362;  {{totalDebit.toPrecision(8)}}
+            <div  ng-class="{largePos: outcomes>0, largeNeg: outcomes<0}">
+              &#8362;  {{outcomes.toPrecision(8)}}
             </div>
           </div>
           <div class="text-muted">הוצאות חודשיות</div>
