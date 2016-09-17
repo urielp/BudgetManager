@@ -1066,3 +1066,64 @@ h1.page-header {
 .box:hover::after {
   opacity: 1;
 }
+
+/*
+
+Table fix?
+*/
+
+table {
+  width: 100%;
+}
+
+thead, tbody, tr, td, th {}
+
+tr:after {
+  visibility: hidden;
+  clear: both;
+}
+
+
+thead th {
+  text-align: right;
+  direction: rtl;
+}
+
+tbody {
+  direction: rtl;
+}
+
+thead {
+  /* fallback */
+}
+
+tbody td, thead th {
+  direction: rtl;
+
+}
+
+.modal-incomes{
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #5bb75b;
+}
+
+.modal-outcomes
+{
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #f9243f;
+  border-color: #f9243f;
+  opacity: 0.8;
+}
+
+.urielH4Test
+{
+  color: #0e0e0e;
+}
+
+.urielBtnTest
+{
+  direction: rtl;
+
+}

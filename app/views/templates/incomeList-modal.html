@@ -1,0 +1,48 @@
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-incomes">
+       <!-- <button type="button" class="close"
+                ng-click="$hide()"> &times;
+        </button>-->
+        <h4 class="modal-title urielH4Test">רשימת הכנסות</h4>
+      </div>
+
+      <div class="panel-body">
+
+        <div ng-if="!incomelist.length" class="text-center">
+          Use <span class="glyphicon glyphicon-plus"></span> to create a list
+        </div>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>פירוט</th>
+            <th>סכום</th>
+            <th>תאריך</th>
+          </tr>
+          </thead>
+          <tbody ng-repeat="income in incomelist track by $index  " ng-if="income.d">
+          <tr>
+            <td>{{$index}}</td>
+            <td>{{income.d}}</td>
+            <td>{{income.y}}</td>
+            <td>{{income.date}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="modal-footer">
+          <button type="button"
+                  class="btn btn-success btn-md  urielBtnTest"
+                  ng-click=""> &nbsp; הוספת הכנסה
+            <span class="glyphicon glyphicon-plus pull-right"></span>
+          </button>
+          <button type="button" class="btn btn-default btn-md pull-left" data-dismiss="modal" ng-click="$hide()">סגור</button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

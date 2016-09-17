@@ -1,3 +1,4 @@
+'use strict';
 angular.module('budgetManagerApp' )
   .controller('BarCtrl', function($scope,outcomeIncomeService)
 {

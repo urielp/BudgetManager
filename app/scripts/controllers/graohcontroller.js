@@ -22,8 +22,8 @@ angular.module('budgetManagerApp')
       $(function () {
         $('#container').highcharts({
           chart: {
-            type: 'area',
-            spacingBottom: 30
+            type: 'column'
+
           },
           title: {
             text: 'XX' +  'גרף הוצאות והכנסות למשך תקופה של '
@@ -53,6 +53,7 @@ angular.module('budgetManagerApp')
             },
             plotBands: [{
               color: 'orange', // Color value
+              width: 2,
               from: 0, // Start of the plot band
               to: -12 // End of the plot band
             }],
@@ -125,7 +126,7 @@ angular.module('budgetManagerApp')
             },
           series: [{
             name: 'Outcome',
-            data: outcomeIncomeService.test1(),//$scope.outcome,
+            data: outcomeIncomeService.test1().reverse(),//$scope.outcome,
             color:"#FC0000",
             fillOpacity: 0.4,
             lineWidth:1,
