@@ -1253,3 +1253,5 @@ tbody td, thead th {
 }
 
 
+.neg-label
+{direction:ltr; unicode-bidi: embed;display: inline;}
