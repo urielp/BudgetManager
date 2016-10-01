@@ -13,32 +13,46 @@ angular.module('budgetManagerApp')
       restrict: 'E',
       controller:'OverviewControllerCtrl',
       link: function ($scope) {
-      $scope.expenselist ={};
+      // $scope.expenselist ={};
 
-      var addToExpenseListModal = $modal({
-        scope:$scope,
-        template:'views/templates/expensesList-modal.html',
-        show:false
-      });
-      $scope.expenselist = outcomeIncomeService.test1();
+        $scope.showIncomeListModal=function()
+        {
+          $location.path( '/incomelist' );
+          //addToIncomeListModal.$promise.then(addToIncomeListModal.show);
+        };
+
         $scope.showModal=function()
         {
-          addToExpenseListModal.$promise.then(addToExpenseListModal.show);
-        }
+          $location.path( '/expenseslist' );
+          //addToExpenseListModal.$promise.then(addToExpenseListModal.show);
+        };
+/*
+      var addToExpenseListModal = $modal({
+        scope:$scope,
+        templateUrl:'views/templates/expensesList-modal.html',
+        show:false
+      });
+      $scope.expenselist = outcomeIncomeService.getexpenses();
+        $scope.showModal=function()
+        {
+          $location.path( '/expenseslist' );
+          //addToExpenseListModal.$promise.then(addToExpenseListModal.show);
+        };
 
 
         var addToIncomeListModal = $modal({
           scope:$scope,
-          template:'views/templates/incomeList-modal.html',
+          templateUrl:'views/templates/incomeList-modal.html',
           show:false
         });
-        $scope.incomelist = outcomeIncomeService.test2();
+        $scope.incomelist = outcomeIncomeService.getIncomes();
         $scope.showIncomeListModal=function()
         {
-          addToIncomeListModal.$promise.then(addToIncomeListModal.show);
-        }
+          $location.path( '/incomelist' );
+          //addToIncomeListModal.$promise.then(addToIncomeListModal.show);
+        };
 
-
+*/
     }
     };
   });

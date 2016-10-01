@@ -1,48 +1,80 @@
-<div class="modal" tabindex="-1">
+<div class="modal " tabindex="-1">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header modal-incomes">
-       <!-- <button type="button" class="close"
-                ng-click="$hide()"> &times;
-        </button>-->
-        <h4 class="modal-title urielH4Test">רשימת הכנסות</h4>
-      </div>
+    <div class="modal-content" >
+      <div class="modal-header modal-incomes" >
 
+        <h4 class="modal-title urielH4Test">הוספת הכנסה חודשית</h4>
+      </div>
       <div class="panel-body">
+        <form role="form" id="add-income" name="listForm">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="list-name">שם</label>
+              <!-- [3] Bind input to watchlist.name -->
+              <input type="text"
+                     class="form-control"
+                     id="list-name"
+                     placeholder="שם הכנסה"
+                     ng-model="income.name"
+                     required>
+            </div>
+            <div class="form-group">
+              <label for="income-description">תיאור קצר</label>
+              <!-- [4] Bind input to watchlist.description -->
+              <input type="text"
+                     class="form-control"
+                     id="income-description"
+                     maxlength="40"
+                     placeholder="לרשום תיאור קצר בנוגע להכנסה"
+                     ng-model="income.description"
+                     required>
+            </div>
+            <div class="form-group">
+              <label for="income-amount">סכום הכנסה</label>
+              <!-- [4] Bind input to watchlist.description -->
+              <input type="number"
+                     class="form-control"
+                     id="income-amount"
+                     maxlength="40"
+                     placeholder="הזן סכום הכנסה"
+                     ng-model="income.amount"
+                     required>
+            </div>
+            <div class="form-group">
+              <label for="income-date">תאריך ההכנסה</label>
+              <!-- [4] Bind input to watchlist.description -->
+              <input type="datetime-local"
+                     class="form-control"
+                     id="income-date"
+                     maxlength="40"
+                     placeholder="הזן תאריך בה בוצאה ההכנסה"
+                     ng-model="income.date"
+                     required>
+            </div>
+            <div class="form-group">
+              <label >הכנסה חודשית חוזרת?</label>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input"
+                         type="checkbox" value=""
+                         ng-model="income.recurrence">
+                  כן
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <!-- [5] Create list on click, but disable if form is invalid-->
+            <button type="submit"
+                    class="btn btn-success"
+                    ng-click="addIncome()"
+                    ng-disabled="!listForm.$valid">הוסף</button>
+            <button type="button"
+                    class="btn btn-danger"
+                    ng-click="$hide()">ביטול</button>
+          </div>
+        </form>
 
-        <div ng-if="!incomelist.length" class="text-center">
-          Use <span class="glyphicon glyphicon-plus"></span> to create a list
-        </div>
-        <table class="table table-hover">
-          <thead>
-          <tr>
-            <th>#</th>
-            <th>פירוט</th>
-            <th>סכום</th>
-            <th>תאריך</th>
-          </tr>
-          </thead>
-          <tbody ng-repeat="income in incomelist track by $index  " ng-if="income.d">
-          <tr>
-            <td>{{$index}}</td>
-            <td>{{income.d}}</td>
-            <td>{{income.y}}</td>
-            <td>{{income.date}}</td>
-          </tr>
-          </tbody>
-        </table>
-        <div class="modal-footer">
-          <button type="button"
-                  class="btn btn-success btn-md  urielBtnTest"
-                  ng-click=""> &nbsp; הוספת הכנסה
-            <span class="glyphicon glyphicon-plus pull-right"></span>
-          </button>
-          <button type="button" class="btn btn-default btn-md pull-left" data-dismiss="modal" ng-click="$hide()">סגור</button>
-
-        </div>
       </div>
-
     </div>
-
-  </div>
 </div>

@@ -126,14 +126,14 @@ angular.module('budgetManagerApp')
             },
           series: [{
             name: 'Outcome',
-            data: outcomeIncomeService.test1().reverse(),//$scope.outcome,
+            data: outcomeIncomeService.getexpenses().reverse(),//$scope.outcome,
             color:"#FC0000",
             fillOpacity: 0.4,
             lineWidth:1,
             shadow: true
           }, {
             name: 'Income',
-            data: outcomeIncomeService.test2(),//$scope.income,
+            data: outcomeIncomeService.getIncomes(),//$scope.income,
             color:'#037019',
             fillOpacity: 0.4,
             lineWidth:1,

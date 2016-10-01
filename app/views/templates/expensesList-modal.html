@@ -1,14 +1,82 @@
-<div class="modal" tabindex="-1">
+<div class="modal " tabindex="-1">
 <div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header modal-outcomes">
+  <div class="modal-content" >
+    <div class="modal-header modal-outcomes" >
       <!-- <button type="button" class="close"
                ng-click="$hide()"> &times;
        </button>-->
-      <h4 class="modal-title urielH4Test">רשימת הכנסות</h4>
+      <h4 class="modal-title urielH4Test">הוספת הוצאה חודשית</h4>
     </div>
     <div class="panel-body">
-
+      <form role="form" id="add-expense" name="listForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="list-name">שם</label>
+            <!-- [3] Bind input to watchlist.name -->
+            <input type="text"
+                   class="form-control"
+                   id="list-name"
+                   placeholder="שם הוצאה"
+                   ng-model="expense.name"
+                   required>
+          </div>
+          <div class="form-group">
+            <label for="expense-description">תיאור קצר</label>
+            <!-- [4] Bind input to watchlist.description -->
+            <input type="text"
+                   class="form-control"
+                   id="expense-description"
+                   maxlength="40"
+                   placeholder="לרשום תיאור קצר בנוגע להוצאה"
+                   ng-model="expense.description"
+                   required>
+          </div>
+          <div class="form-group">
+            <label for="expense-amount">סכום הוצאה</label>
+            <!-- [4] Bind input to watchlist.description -->
+            <input type="number"
+                   class="form-control"
+                   id="expense-amount"
+                   maxlength="40"
+                   placeholder="הזן סכום הוצאה"
+                   ng-model="expense.amount"
+                   required>
+          </div>
+          <div class="form-group">
+            <label for="expense-date">תאריך הוצאה</label>
+            <!-- [4] Bind input to watchlist.description -->
+            <input type="datetime-local"
+                   class="form-control"
+                   id="expense-date"
+                   maxlength="40"
+                   placeholder="הזן תאריך בה בוצאה ההוצאה"
+                   ng-model="expense.date"
+                   required>
+          </div>
+          <div class="form-group">
+            <label >הוצאה חודשית חוזרת?</label>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input"
+                       type="checkbox" value=""
+                ng-model="expense.recurrence">
+               כן
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- [5] Create list on click, but disable if form is invalid-->
+          <button type="submit"
+                  class="btn btn-success"
+                  ng-click="addExpense()"
+                  ng-disabled="!listForm.$valid">הוסף</button>
+          <button type="button"
+                  class="btn btn-danger"
+                  ng-click="$hide()">ביטול</button>
+        </div>
+      </form>
+<!--
       <div ng-if="!expenselist.length" class="text-center">
         Use <span class="glyphicon glyphicon-plus"></span> to create a list
       </div>
@@ -42,8 +110,9 @@
       </div>
     </div>
 
-    </div>
+    </div>-->
   </div>
+</div>
 
 </div>
 </div>

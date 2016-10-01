@@ -399,16 +399,28 @@ this.getDates = function()
       return datesPeriod;
     };
 
-    this.test1 = function()
+    this.getexpenses = function()
     {
       outcometest.reverse();
       return outcometest;
     };
 
-    this.test2 = function()
+    this.getIncomes = function()
     {
       incometest.reverse();
       return incometest;
     }
+
+    this.addExpense =function(expense)
+    {
+      console.log("addExpense(service)");
+      outcometest.push({y:expense.amount,d:expense.description,date:expense.date});
+    };
+
+    this.addIncome =function(income)
+    {
+      console.log("addIncome(service)");
+      incometest.push({y:income.amount,d:income.description,date:income.date});
+    };
     var Model =loadModel();
   });

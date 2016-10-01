@@ -1,0 +1,37 @@
+<!--<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" style="right:250px;top:50px">-->
+<!--<div class="panel panel-danger" style="{top:150px}" >
+  <div class="panel-heading">רשימת הוצאות</div>
+  <div class="panel-body">
+  <div ng-if="!expenselist.length" class="text-center">
+    Use <span class="glyphicon glyphicon-plus"></span> to create a list
+  </div>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>פירוט</th>
+      <th>סכום</th>
+      <th>תאריך</th>
+    </tr>
+    </thead>
+    <tbody ng-repeat="expense in expenselist track by $index  " ng-if="expense.d">
+    <tr>
+      <td>{{$index}}</td>
+      <td>{{expense.d}}</td>
+      <td style="{direction:ltr;}">{{expense.y}}</td>
+      <td>{{expense.date}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+  <div class="panel-footer">
+    <button type="button"
+            class="btn btn-danger btn-md  urielBtnTest"
+            ng-click="showModal()"> &nbsp; הוספת הוצאה
+      <span class="glyphicon glyphicon-plus pull-right"></span>
+      </button>
+  </div>
+  </div>-->
+<!--</div>-->
+<expenseListView></expenseListView>

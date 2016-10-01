@@ -52,21 +52,22 @@
       </div><!-- /.container-fluid -->
     </nav>
 <sidebarpanel></sidebarpanel>
-    <div class="container">
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" style="right:250px; ">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li><a href="#dashboard"><svg class="glyph stroked home"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-home"></use></svg></a></li>
+          <li class="active">Icons</li>
+        </ol>
+      </div>
+      </div>
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" style="right:250px;top:50px ">
     <div ng-view="">
 
     </div>
-    </div>
 
-<dashboardpanel></dashboardpanel>
+  </div>
 
-    </div>
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -102,6 +103,7 @@
     <script src="bower_components/highcharts/highcharts.js"></script>
     <script src="bower_components/highcharts/highcharts-more.js"></script>
     <script src="bower_components/highcharts/modules/exporting.js"></script>
+    <script src="bower_components/less/dist/less.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -121,6 +123,11 @@
         <script src="scripts/services/outcomeincome-service.js"></script>
         <script src="scripts/controllers/graohcontroller.js"></script>
         <script src="scripts/directives/expenselist-panel.js"></script>
+        <script src="scripts/controllers/expenseslist.js"></script>
+        <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/directives/expenselistView-panel.js"></script>
+        <script src="scripts/directives/incomelistview-panel.js"></script>
+        <script src="scripts/controllers/incomelist.js"></script>
         <!-- endbuild -->
 </body>
 </html>

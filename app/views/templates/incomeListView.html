@@ -1,0 +1,34 @@
+<div class="panel panel-green" style="{top:150px}" >
+  <div class="panel-heading">רשימת הכנסות</div>
+  <div class="panel-body">
+    <div ng-if="!incomelist.length" class="text-center">
+
+    </div>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>פירוט</th>
+        <th>סכום</th>
+        <th>תאריך</th>
+      </tr>
+      </thead>
+      <tbody ng-repeat="income in incomes track by $index  " ng-if="income.d">
+      <tr>
+        <td>{{$index}}</td>
+        <td>{{income.d}}</td>
+        <td style="{direction:ltr;}">{{income.y}}</td>
+        <td>{{income.date}}</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <div class="panel-footer">
+    <button type="button"
+            class="btn btn-success btn-md  urielBtnTest"
+            ng-click="showModal()"> &nbsp; הוספת הכנסה
+      <span class="glyphicon glyphicon-plus pull-right"></span>
+    </button>
+  </div>
+</div>
