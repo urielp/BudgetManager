@@ -9,21 +9,10 @@
  */
 angular.module('budgetManagerApp')
   .controller('ExpenseslistCtrl', function ($scope,$modal,outcomeIncomeService) {
+
+
     $scope.expenselist= outcomeIncomeService.getexpenses();
-/*    $scope.expense ={};
 
-
-    var addToExpenseListModal = $modal({
-      scope:$scope,
-      templateUrl:'views/templates/expensesList-modal.html',
-      show:false
-    });
-
-    $scope.showModal=function()
-    {
-      console.log("showModal(controller)");
-      addToExpenseListModal.$promise.then(addToExpenseListModal.show);
-    };*/
 
     $scope.addExpense2 = function(expense)
     {

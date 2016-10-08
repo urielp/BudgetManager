@@ -274,39 +274,52 @@ angular.module('budgetManagerApp')
     var outcome=[];
     var incometest=[];
     var outcometest=[];
+    var complexIncomeData =[];
+    var complexOutComeData =[];
+    var data ={
+
+    };
+
+    var urielData=[];
     var dates = [];
     var totalBalance=0;
     var totalCredit =0;
     var totalDebit=0;
     var monthes=[];
     var datesPeriod = [];
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
 
+    var testMe=[];
 
+    //console.log("The random month is : "+ monthNames[Math.floor((Math.random() * 12) + 0)]);
+    var loadData = function()
+    {
+      var datxxx ;
     //reading the data and devided it to incomes and outcomes for the graph
     movments.forEach(function(entry)
     {
-    /*  date=new Date(entry.actionDate);
-      if($scope.date.getMonth()!=$scope.oldDate.getMonth())
-      {
-        $scope.monthCounter++;
-        $scope.oldDate=$scope.date;
-        //$scope.dates.push($scope.date.toLocaleDateString());
-      }*/
       if(entry.debit == 0 )
       {
+        //console.log(new Date(entry.actionDate).getTime());
         income.push({y:entry.credit,d:entry.description,date:entry.actionDate});
         incometest.push({y:entry.credit,d:entry.description,date:entry.actionDate});
-        outcometest.push(null);
+        urielData.push({amount:entry.credit,description:entry.description,date:entry.actionDate});
+        complexIncomeData.push({name:entry.description,y:entry.credit,x:new Date(entry.actionDate).getTime()});
+        datxxx = new Date(entry.actionDate);
+       // complexIncomeData.push([Date.UTC(datxxx.getYear(),datxxx.getMonth(),datxxx.getDay()),entry.credit]);;
         totalBalance=totalBalance+parseInt(entry.credit);
         totalCredit=totalCredit+entry.credit;
       }
       else
       {
-        // $scope.outcome.push(entry.debit);
-        // $scope.outComeDescription.push(entry.description);
+
         outcome.push({y:entry.debit,d:entry.description,date:entry.actionDate} );
         outcometest.push({y:entry.debit,d:entry.description,date:entry.actionDate} );
-        incometest.push(null);
+        urielData.push({amount:entry.debit,description:entry.description,date:entry.actionDate});
+        datxxx = new Date(entry.actionDate);
+        complexOutComeData.push({name:entry.description,y:entry.debit,x:new Date(entry.actionDate).getTime()});
         totalBalance=totalBalance+parseInt(entry.debit);
         totalDebit=totalDebit+entry.debit;
         totalDebit.toPrecision(5);
@@ -314,47 +327,90 @@ angular.module('budgetManagerApp')
 
       dates.push(new Date( entry.actionDate).toLocaleDateString());
       totalCredit.toPrecision(5);
-    });
+    })
+     //console.log( urielData);
+    data.movments=urielData;
 
+     // console.log( JSON.stringify(data));
+
+    };
+
+    this.testComplex = function()
+    {
+      return complexIncomeData.reverse();
+    };
+    this.testComplex2 = function()
+    {
+      return complexOutComeData.reverse();
+    };
+    //saving expenses lists into local storage
+    var saveModel = function () {
+      localStorage['BudgetManager.expensesLists'] = JSON.stringify(Model.outcome);
+      localStorage['BudgetManager.incomeLists'] = JSON.stringify(Model.income);
+
+    };
     var loadModel =function()
     {
+      loadData();
       var model =
         {
-          income:income,
-          outcome:outcome,
+          income:localStorage['BudgetManager.incomeLists'] ?
+            JSON.parse(localStorage['BudgetManager.incomeLists'] ) : incometest,
+          outcome:localStorage['BudgetManager.expensesLists'] ?
+            JSON.parse(localStorage['BudgetManager.expensesLists'] ) : outcometest,
           totalCredit:totalCredit,
-          totalDebit:totalDebit,
+          totalDebit:0,
           totalBalance:totalBalance,
           totalMovments:movments,
           Monthes:monthes,
           dates:dates
         }
-    model.income.reverse();
-    model.outcome.reverse();
     return model;
     };
+
+
 this.getDates = function()
 {
   Model.dates.reverse();
   return Model.dates;
-}
+};
+
+
     this.getIncome = function()
     {
+      Model.income.reverse();
       return Model.income;
     };
 
    this.getOutcome = function()
     {
-     return Model.outcome;
+        Model.outcome.reverse();
+        return Model.outcome;
     };
 
     this.getTotalInceome =function()
     {
+      Model.totalCredit=0;
+      Model.income.forEach(function(entry)
+      {
+        if(entry != null) {
+          //console.log(entry.y);
+          Model.totalCredit = (Model.totalCredit + entry.y)
+        }
+      });
         return Model.totalCredit;
     };
 
     this.getTotalOutCome = function()
     {
+      Model.totalDebit =0;
+      Model.outcome.forEach(function(entry)
+      {
+        if(entry != null) {
+          //console.log(entry.y);
+         Model.totalDebit = (Model.totalDebit + entry.y)
+        }
+      });
       return Model.totalDebit;
     };
 
@@ -371,19 +427,25 @@ this.getDates = function()
       var p = [];
       movments.forEach(function(entry)
       {
+
             currentMonth = (new Date(entry.actionDate).getMonth())+1;
+
+
             year = new Date(entry.actionDate).getFullYear();
             if(oldMonth=== "")
             {
               monthes.push(currentMonth);
               datesPeriod.push(new Date(year,currentMonth-1,day,0,0,0));
-
+              testMe.push(monthNames[currentMonth]);
+              //console.log(monthNames[currentMonth]);
             }
             else if(oldMonth!=currentMonth)
             {
               monthes.push(currentMonth);
               datesPeriod.push(new Date(year,currentMonth-1,day,0,0,0));
-              console.log(new Date(year,currentMonth-1,day,0,0,0).getMonth());
+
+              testMe.push(monthNames[currentMonth]);
+              //console.log(monthNames[currentMonth]);
             }
         oldMonth=currentMonth;
 
@@ -392,6 +454,10 @@ this.getDates = function()
       return monthes.length;
     };
 
+    this.testMeNow =function()
+    {
+      return testMe;
+    }
 
     this.getDatePeriod = function()
     {
@@ -401,26 +467,29 @@ this.getDates = function()
 
     this.getexpenses = function()
     {
-      outcometest.reverse();
-      return outcometest;
+      Model.outcome.reverse();
+
+      return Model.outcome;
     };
 
     this.getIncomes = function()
     {
-      incometest.reverse();
-      return incometest;
-    }
+      Model.income.reverse();
+      return Model.income;
+    };
 
     this.addExpense =function(expense)
     {
       console.log("addExpense(service)");
-      outcometest.push({y:expense.amount,d:expense.description,date:expense.date});
+      Model.outcome.push({y:(expense.amount*-1),d:expense.description,date:expense.date});
+      saveModel();
     };
 
     this.addIncome =function(income)
     {
       console.log("addIncome(service)");
-      incometest.push({y:income.amount,d:income.description,date:income.date});
+      Model.income.push({y:income.amount,d:income.description,date:income.date});
+      saveModel();
     };
     var Model =loadModel();
   });

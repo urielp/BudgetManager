@@ -19,10 +19,10 @@ angular.module('budgetManagerApp')
       /*****
        * The Chosen Graph library
        */
-      $(function () {
+     /* $(function () {
         $('#container').highcharts({
           chart: {
-            type: 'column'
+            type: 'line'
 
           },
           title: {
@@ -64,14 +64,14 @@ angular.module('budgetManagerApp')
             }]
           },
 
-          /*
+          /!*
           tooltip: {
             shared:false,
             valueSuffix: '₪',
             crosshairs: true
-          }*/
-          /****Test To Be Checked ***/
-          /*
+          }*!/
+          /!****Test To Be Checked ***!/
+          /!*
            tooltip: {
                 shared: false,
                 valueSuffix:'₪',
@@ -87,7 +87,7 @@ angular.module('budgetManagerApp')
                     }
                     return text+ '₪';
                 }
-            }*/
+            }*!/
             tooltip: {
                 shared: false,
                 valueSuffix:'₪',
@@ -96,7 +96,7 @@ angular.module('budgetManagerApp')
                 }
             }
           ,
-          /*
+          /!*
           plotOptions: {
             area: {
 
@@ -112,7 +112,7 @@ angular.module('budgetManagerApp')
                 }
               }
             }
-          }*/
+          }*!/
              plotOptions: {
                 area: {
                     //stacking: 'normal',
@@ -121,26 +121,82 @@ angular.module('budgetManagerApp')
                     marker: {
                         lineWidth: 1,
                         lineColor: '#666666'
-                    }
+                    },
+                  series: {
+                    pointWidth: 40//width of the column bars irrespective of the chart size
+                  }
                 }
             },
-          series: [{
+          series: [/!*{
             name: 'Outcome',
             data: outcomeIncomeService.getexpenses().reverse(),//$scope.outcome,
             color:"#FC0000",
             fillOpacity: 0.4,
-            lineWidth:1,
+            pointWidth:20,
             shadow: true
-          }, {
+          },*!/ {
             name: 'Income',
-            data: outcomeIncomeService.getIncomes(),//$scope.income,
+            data: outcomeIncomeService.testComplex(),//$scope.income,
             color:'#037019',
             fillOpacity: 0.4,
-            lineWidth:1,
+            pointWidth:20,
             shadow: true
           }]
         });
       });
+*/
+    $(function () {
+      $('#container').highcharts({
+        chart: {
+          type: 'area'
+        },
 
+        xAxis: {
+          tickInterval: 7 * 24 * 3600 * 1000,
+          tickmarkPlacement: 'on',
+          title: {
+            enabled: false
+          },
 
+          type: 'datetime'
+        },
+        tooltip: {
+          shared: false,
+          valueSuffix:'₪',
+          pointFormat: "Date: {point.date:,%Y-%m-%d}",
+          formatter: function () {
+            return 'Description : ' + this.point.name +'<br/>'+ 'Amount : ' +this.point.y +'₪<br/>Date: '+ Highcharts.dateFormat('%e.%b ',
+                new Date(this.point.x));
+          }
+        },
+        plotOptions: {
+          area: {
+            //stacking: 'normal',
+            lineColor: '#666666',
+            lineWidth: 1,
+            marker: {
+              lineWidth: 1,
+              lineColor: '#666666'
+            }
+          }
+        },
+        series: [{
+          name:'הכנסות',
+          data:outcomeIncomeService.testComplex().reverse(),
+          color:'#037019',
+          fillOpacity: 0.4,
+          pointWidth:20,
+          shadow: true
+          },
+          {
+            name: 'הוצאות',
+            data: outcomeIncomeService.testComplex2().reverse(),//$scope.outcome,
+            color:"#FC0000",
+            fillOpacity: 0.4,
+            pointWidth:20,
+            shadow: true
+          }]
+      });
+    });
+    console.log(outcomeIncomeService.testComplex().reverse());
   });
